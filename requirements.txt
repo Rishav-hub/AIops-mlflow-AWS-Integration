@@ -8,5 +8,6 @@ joblib
 sklearn
 from_root
 boto3
+mysqlclient
 ### local packages -
 #-e . # << uncomment this to install from setup.py

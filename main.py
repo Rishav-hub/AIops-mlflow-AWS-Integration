@@ -54,7 +54,8 @@ if __name__ == "__main__":
 
     alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
     l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
-
+    uri = "http://127.0.0.1:5000"
+    mlflow.set_tracking_uri(uri)
     with mlflow.start_run():
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
         lr.fit(train_x, train_y)
@@ -90,9 +91,9 @@ if __name__ == "__main__":
                 # Push model in s3 bucket
         try:
             if input("Push Model To s3 (Y or N): ") == 'Y':
-                runs = os.path.join(from_root(), 'mlruns/')
-                print("Path to mlruns Exists :", os.path.exists(runs))
-                status = upload(s3_bucket_name='mlflow-001', mlruns_direc=runs)
+                runs = os.path.join(from_root(), 'artifacts/')
+                print("Path to artifacts Exists :", os.path.exists(runs))
+                status = upload(s3_bucket_name='mlflow-aws-002', mlruns_direc=runs)
                 print(status)
         except Exception as e:
             print(f"Error occured : {e.__str__()}")

@@ -1,2 +1,2 @@
 params:
-  app_name: 
+  app_name: arn:aws:iam::131472483168:role/awsrole-002
